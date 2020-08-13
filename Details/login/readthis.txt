@@ -1,0 +1,3 @@
+Firstly You create a database name is     portfolio
+go to the database and click on import button and now select the    data.sql file and click on Go
+button
