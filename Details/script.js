@@ -1,18 +1,26 @@
+const skillGroup = document.getElementById("skillGroup");
 const skillInput = document.getElementById("skillInput");
 
-// function appendInputBox(){
+// initialize create new input box
+skillInput.addEventListener("keydown", handleCreateInputBox);
 
-// }
+function handleCreateInputBox(e) {
+  // count input element
+  const skillInputCount = skillGroup.childElementCount + 1;
 
-const newInputBox = document.createTextNode("new input box");
-const newSkillInput = document
-  .createElement("input")
-  .addEventListener("focus", handleCreateInputBox);
+  // new input
+  const newInput = document.createElement("input");
+  newInput.placeholder = `Skill ${skillInputCount}`;
+  newInput.name = `skill${skillInputCount}`;
+  newInput.maxLength = "50";
+  newInput.addEventListener("keydown", handleCreateInputBox);
 
-skillInput.addEventListener("focus", handleCreateInputBox);
+  // new input box
+  const newInputBox = document.createElement("div");
+  newInputBox.classList.add("inputBox");
+  newInputBox.appendChild(newInput);
 
-function handleCreateInputBox() {
-  console.log("focused");
-  this.parentNode.insertBefore(newInputBox, this.nextSibling);
-  this.removeEventListener("focus", createInputBox);
+  // console.log("input box appended");
+  skillGroup.appendChild(newInputBox);
+  e.target.removeEventListener("keydown", handleCreateInputBox);
 }
